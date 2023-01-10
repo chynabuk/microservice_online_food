@@ -1,0 +1,21 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: email-sender-service
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: bbuba0603
+    password: faizdkxxmifkcnbi
+    properties.mail.smtp:
+        auth: true
+        starttls.enable: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true

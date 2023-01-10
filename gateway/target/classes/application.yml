@@ -1,0 +1,66 @@
+server:
+  port: 8090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+
+#security:
+#  basic:
+#    enabled: true
+#management:
+#  security:
+#    enabled: true
+
+spring:
+#  main:
+#    web-application-type: reactive
+#    allow-bean-definition-overriding: true
+  application:
+    name: api-gateway
+  datasource:
+    url: jdbc:postgresql://localhost:5432/online_food
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: food-service
+#          uri: lb://food-service
+#          predicates:
+#            - Path=/api/food/**
+#        - id: order-service
+#          uri: lb://order-service
+#          predicates:
+#            - Path=/api/order/**
+#        - id: eureka-server
+#          uri: http://localhost:8761/
+#          predicates:
+#            - Path=/eureka/**
+zuul:
+  routes:
+    food-service:
+      path: /api/food/**
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+      url: http://localhost:8085/api/food
+    order-service:
+      path: /api/order/**
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+      url: http://localhost:8086/api/order

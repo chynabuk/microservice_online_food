@@ -28,16 +28,51 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+        </dependency>
         <!--        <dependency>-->
-        <!--            <groupId>org.postgresql</groupId>-->
-        <!--            <artifactId>postgresql</artifactId>-->
-        <!--            <version>42.3.1</version>-->
-        <!--        </dependency>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.axonframework</groupId>-->
+<!--            <artifactId>axon-spring</artifactId>-->
+<!--            <version>4.5.13</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.axonframework.extensions.tracing</groupId>-->
+<!--            <artifactId>axon-tracing-spring-boot-starter</artifactId>-->
+<!--            <version>4.1-M1</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.axonframework</groupId>-->
+<!--            <artifactId>axon-spring-boot-starter</artifactId>-->
+<!--            <version>4.4.3</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.axonframework</groupId>-->
+<!--                    <artifactId>axon-server-connector</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
     </dependencies>
 
 </project>

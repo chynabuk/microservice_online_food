@@ -1,4 +1,4 @@
-package com.company.food_online_service.util;
+package com.company.gateway.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,8 +16,9 @@ public class Response<T>{
         this.data = data;
     }
 
-    public Response(String error) {
+    public Response(T data, String error) {
         this.error = error;
+        this.data = data;
     }
 
     public Response(T data, long dataAmount){
