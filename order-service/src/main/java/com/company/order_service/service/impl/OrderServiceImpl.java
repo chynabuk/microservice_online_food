@@ -43,9 +43,12 @@ public class OrderServiceImpl implements OrderService {
             orderRepository.save(order);
             orderModel.setId(order.getId());
             orderModel.setUserId(user.getId());
+            orderModel.setStatus(order.getStatus());
+            orderModel.setOrderedDate(order.getOrderedDate());
 
             log.info("Order #" + order.getId() + " is placed");
-            log.info(sendEmail("kushtarbekovkuba2002@gmail.com", "Order placing #" + order.getId(), user.getEmail() + " placed order of " + food));
+            log.info(sendEmail("kushtarbekovkuba2002@gmail.com", "Order placing: " + 'N' + order.getId(), user.getEmail() + " placed order of " + food));
+
         }
 
         return orderModel;
@@ -58,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
             order.setStatus(Status.COMPLETED);
             orderRepository.save(order);
             log.info("Order #" + order.getId() + " is completed");
-            log.info(sendEmail(order.getUser().getEmail(), "Order completed #" + order.getId(), order.getFood() + "\nYour order is completed\n"));
+            log.info(sendEmail(order.getUser().getEmail(), "Order completed: N" + order.getId(), order.getFood() + "\nYour order is completed\n"));
         }
         return toModel(order);
     }
@@ -70,7 +73,7 @@ public class OrderServiceImpl implements OrderService {
             order.setStatus(Status.CANCELLED);
             orderRepository.save(order);
             log.info("Order #" + order.getId() + " is cancelled");
-            log.info(sendEmail(order.getUser().getEmail(), "Order cancelled #" + order.getId(), order.getFood() + "\nYour order is cancelled\n"));
+            log.info(sendEmail(order.getUser().getEmail(), "Order cancelled: N" + order.getId(), order.getFood() + "\nYour order is cancelled\n"));
         }
         return toModel(order);
     }
@@ -111,7 +114,7 @@ public class OrderServiceImpl implements OrderService {
 
         HttpEntity<String> httpEntity = new HttpEntity<String>(httpHeaders);
 
-        return restTemplate.exchange("http://localhost:8090/auth/get-myself2",
+        return restTemplate.exchange("http://localhost:8090/auth/get-myself",
                 HttpMethod.GET, httpEntity, User.class).getBody();
     }
 
@@ -126,8 +129,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private String sendEmail(String to, String subject, String body){
+//        String url = "http://localhost:8084/api/email/send?to=" + to + "&subject=" + subject + "&body=" + body;
+//        log.info("url: " + url);
         return restTemplate.exchange(
-                String.format("http://localhost:8084/api/email/send?to=%s&subject=%s&body=%s", to, subject, body),
+                "http://localhost:8084/api/email/send?to=" + to + "&subject=" + subject + "&body=" + body,
                 HttpMethod.POST,
                 null,
                 String.class)

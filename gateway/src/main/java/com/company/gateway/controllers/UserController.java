@@ -20,8 +20,8 @@ public class UserController {
         return new Response<>(userService.register(userRegistrationModel));
     }
 
-    @GetMapping("/get-myself2")
-    public User getMyself2(){
+    @GetMapping("/get-myself")
+    public User getMyself(){
         return userService.getMyself();
     }
 }

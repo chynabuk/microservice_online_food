@@ -1,4 +1,4 @@
-package com.company.email_sender_service.service.controller;
+package com.company.email_sender_service.controller;
 
 import com.company.email_sender_service.service.EmailService;
 import lombok.RequiredArgsConstructor;
